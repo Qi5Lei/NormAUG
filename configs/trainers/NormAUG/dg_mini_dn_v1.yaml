@@ -1,0 +1,26 @@
+DATALOADER:
+  TRAIN_X:
+    SAMPLER: "SeqDomainSampler"
+    BATCH_SIZE: 48 # 16 images per domain * 4
+  TEST:
+    BATCH_SIZE: 100
+  NUM_WORKERS: 2
+  RETURN_IMG0: True
+
+OPTIM:
+  NAME: "sgd"
+  LR: 0.003
+  MAX_EPOCH: 20
+  LR_SCHEDULER: "cosine"
+
+TRAIN:
+  PRINT_FREQ: 10
+
+TRAINER:
+  NORMAUG:
+    STRONG_TRANSFORMS: ["random_flip", "randaugment_fixmatch", "normalize", "cutout"]
+    C_OPTIM:
+      NAME: "sgd"
+      LR: 0.01
+      MAX_EPOCH: 20
+      LR_SCHEDULER: "cosine"
